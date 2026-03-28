@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Writing Humanizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔍 AI Writing Humanizer</h1>
+      <p class="subtitle">Detect AI-generated content and transform it into authentic human writing</p>
+    </header>
+
+    <!-- Step 1: Upload -->
+    <section class="card" id="upload-section">
+      <h2>📄 Step 1: Upload Your Document</h2>
+      <div class="upload-area" id="drop-zone">
+        <div class="upload-icon">📁</div>
+        <p>Drag & drop your file here, or click to browse</p>
+        <p class="file-types">Supports .txt, .docx, .pdf (max 10MB)</p>
+        <input type="file" id="file-input" accept=".txt,.docx,.pdf" hidden>
+      </div>
+      <div class="or-divider"><span>OR</span></div>
+      <div class="paste-area">
+        <textarea id="paste-input" placeholder="Paste your text here..." rows="6"></textarea>
+        <button class="btn btn-secondary" id="paste-btn">Use Pasted Text</button>
+      </div>
+    </section>
+
+    <!-- Step 2: Analysis Results -->
+    <section class="card hidden" id="analysis-section">
+      <div class="analysis-header">
+        <h2>🔬 Step 2: AI Detection Results</h2>
+        <div class="ai-meter">
+          <div class="meter-label">AI Content Detected:</div>
+          <div class="meter-bar">
+            <div class="meter-fill" id="meter-fill"></div>
+          </div>
+          <div class="meter-value" id="meter-value">0%</div>
+        </div>
+      </div>
+      <div class="paragraphs-container" id="paragraphs-container"></div>
+      
+      <!-- Style Selection -->
+      <div class="style-selector">
+        <h3>✍️ Choose Humanization Style</h3>
+        <div class="style-options">
+          <label class="style-option">
+            <input type="radio" name="style" value="academic">
+            <div class="style-card">
+              <span class="style-icon">🎓</span>
+              <span class="style-name">Academic</span>
+              <span class="style-desc">Scholarly, complex, field-specific</span>
+            </div>
+          </label>
+          <label class="style-option">
+            <input type="radio" name="style" value="professional" checked>
+            <div class="style-card">
+              <span class="style-icon">💼</span>
+              <span class="style-name">Professional & Formal</span>
+              <span class="style-desc">Business-appropriate, clear, structured</span>
+            </div>
+          </label>
+          <label class="style-option">
+            <input type="radio" name="style" value="natural">
+            <div class="style-card">
+              <span class="style-icon">🌿</span>
+              <span class="style-name">Natural</span>
+              <span class="style-desc">Conversational, polished, everyday</span>
+            </div>
+          </label>
+          <label class="style-option">
+            <input type="radio" name="style" value="speaking">
+            <div class="style-card">
+              <span class="style-icon">🗣️</span>
+              <span class="style-name">Speaking English</span>
+              <span class="style-desc">Casual spoken style, informal</span>
+            </div>
+          </label>
+        </div>
+        <button class="btn btn-primary" id="humanize-btn">🪄 Humanize AI Content</button>
+      </div>
+    </section>
+
+    <!-- Step 3: Results -->
+    <section class="card hidden" id="results-section">
+      <h2>✅ Step 3: Humanized Result</h2>
+      <div class="comparison-view">
+        <div class="comparison-col">
+          <h3>Original <span class="badge">with AI highlights</span></h3>
+          <div class="text-panel" id="original-panel"></div>
+        </div>
+        <div class="comparison-col">
+          <h3>Humanized <span class="badge badge-green">converted</span></h3>
+          <div class="text-panel" id="humanized-panel"></div>
+        </div>
+      </div>
+      <div class="download-bar">
+        <button class="btn btn-secondary" id="download-txt">⬇️ Download .txt</button>
+        <button class="btn btn-secondary" id="download-docx">⬇️ Download .docx</button>
+        <button class="btn btn-outline" id="start-over">🔄 Start Over</button>
+      </div>
+    </section>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loading">
+      <div class="spinner"></div>
+      <p id="loading-text">Processing...</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
